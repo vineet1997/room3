@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react';
 import Hook from './sections/Hook';
 import Room from './sections/Room';
 import Life from './sections/Life';
@@ -14,6 +15,7 @@ export default function App() {
       <Neighbourhood />
       <Deal />
       <Invitation />
+      <Analytics />
     </main>
   );
 }
