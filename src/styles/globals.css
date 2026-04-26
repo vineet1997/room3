@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Room 3 — Global styles
+  Design tokens live in tailwind.config.ts.
+  This file handles base, font-faces (when self-hosted), and small utilities.
+*/
+
+:root {
+  --bg: #16110D;
+  --surface: #221A14;
+  --surface-2: #2C231B;
+  --ink: #F2E9D8;
+  --ink-2: #A89884;
+  --ink-3: #5F574D;
+  --gold: #C4956A;
+  --terra: #C45D3E;
+  --dusk: #5C7A8C;
+  --dusk-2: #7A95A6;
+
+  /* Vertical rhythm */
+  --section-pad-y-mobile: 4rem;
+  --section-pad-y-desktop: 6rem;
+}
+
+@layer base {
+  html {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* Heading defaults — most headings get explicit classes anyway */
+  h1, h2, h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  /* Selection */
+  ::selection {
+    background: var(--terra);
+    color: var(--ink);
+  }
+}
+
+@layer components {
+  /* Section number — gold mono, lowercase, used at the top of sections */
+  .section-number {
+    @apply font-mono text-caption text-gold tracking-wider;
+    font-feature-settings: 'tnum' 1;
+  }
+
+  /* Display headlines */
+  .display-xl {
+    @apply font-display text-display-xl text-ink;
+  }
+  .display-l {
+    @apply font-display text-display-l text-ink;
+  }
+  .display-m {
+    @apply font-display text-display-m text-ink;
+  }
+
+  /* Body */
+  .body-l {
+    @apply font-body text-body-l text-ink;
+  }
+  .body {
+    @apply font-body text-body text-ink;
+  }
+  .caption {
+    @apply font-mono text-caption text-ink-2;
+  }
+
+  /* The receipt section uses mono for everything */
+  .receipt {
+    @apply font-mono;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum' 1;
+  }
+
+  /* The CTA button */
+  .btn-cta {
+    @apply font-mono inline-flex items-center gap-3 px-7 py-4 transition-all duration-200;
+    background: var(--terra);
+    color: var(--ink);
+    text-decoration: none;
+    border-radius: 2px;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+  }
+  .btn-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px -8px rgba(196, 93, 62, 0.5);
+  }
+  .btn-cta:active {
+    transform: scale(0.97);
+  }
+
+  /* The hand-drawn arrow used in the neighbourhood section */
+  .hand-arrow {
+    color: var(--ink-3);
+    display: inline-block;
+    width: 1.5em;
+    height: 1em;
+    vertical-align: middle;
+  }
+
+  /* The fade-in-on-enter motion */
+  .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 600ms cubic-bezier(0.2, 0.6, 0.2, 1),
+                transform 600ms cubic-bezier(0.2, 0.6, 0.2, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Reduced motion override */
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal.in-view {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .btn-cta:hover {
+      transform: none;
+    }
+  }
+}
+
+@layer utilities {
+  .section-pad {
+    padding-top: var(--section-pad-y-mobile);
+    padding-bottom: var(--section-pad-y-mobile);
+  }
+  @media (min-width: 768px) {
+    .section-pad {
+      padding-top: var(--section-pad-y-desktop);
+      padding-bottom: var(--section-pad-y-desktop);
+    }
+  }
+
+  .gutter {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .gutter {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    .gutter {
+      padding-left: 5rem;
+      padding-right: 5rem;
+    }
+  }
+}
