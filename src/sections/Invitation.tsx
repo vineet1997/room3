@@ -77,10 +77,7 @@ export default function Invitation() {
           {/* Footer / byline — tiny, mono, ink-3, no link */}
           <footer className="mt-24 md:mt-32 border-t border-ink-3 pt-6">
             <p className="font-mono text-[12px] md:text-[13px] text-ink-3 leading-relaxed tracking-wide">
-              Made by Vineet, who lives in Room 1.
-            </p>
-            <p className="font-mono text-[12px] md:text-[13px] text-ink-3 leading-relaxed tracking-wide mt-1">
-              Room 3 · DLF Phase 2 · 2026
+              Made with unreasonable effort by Vineet, who lives in Room 1 · 2026
             </p>
           </footer>
         </div>
